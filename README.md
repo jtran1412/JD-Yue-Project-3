@@ -176,6 +176,7 @@ Overall, the combination of NLP and the Multinomial Naive Bayes model can be a p
 The "json_to_csv_converter.py" file ([Yelp/dataset-examples](https://github.com/Yelp/dataset-examples)) provided by Yelp is being "too old" (created more than 8 years ago and no updates to it yet) which means that it no longer works with the recent version of Python. Thus the converter file is considered as unusable as of now.
 
 **(2) 1 star review data size**
+
 The distribution of the lengths of 1 star and 5 star reviews is significantly different, it might affect the validity of the analysis. E.g., A text of 1 word or two words reviews will probably show a rating of 5 stars as the dataset for 5 stars used in this project is much bigger than the 1 star used.
 
 ## Reference
