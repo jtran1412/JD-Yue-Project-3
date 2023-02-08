@@ -39,7 +39,7 @@ The Yelp dataset can be obtained by downloading it from the official Yelp websit
 
 The Yelp dataset I have chosen for this project is the review dataset, which includes information about individual reviews written by Yelp users. This dataset is particularly useful for NLP and machine learning that aim to gain insights into customer opinions, preferences, and experiences.
 
-![Yelp Dataset](../Project-3/images/yelp_dataset.png)
+![Yelp Dataset](/images/yelp_dataset.png)
 
 ## Steps
 ### **(1) Json-csv converter**
