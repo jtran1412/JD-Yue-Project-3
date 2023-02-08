@@ -46,7 +46,7 @@ The Yelp dataset I have chosen for this project is the review dataset, which inc
 
 The first step in processing the Yelp review data is to convert it from the JSON format to the CSV format. Converting the Yelp review data from JSON to CSV can make it easier to load and manipulate the data with Python.
 
-[json-csv converter]()
+[json-csv converter](https://github.com/JD-Yue/Project-3/blob/main/1_collecting%20data/json-csv_original_data.ipynb)
 
 The following steps/code perform the conversion of the Yelp review data from JSON to CSV, and loads the resulting data into a Pandas dataframe for further analysis and processing.
 
@@ -59,37 +59,37 @@ The following steps/code perform the conversion of the Yelp review data from JSO
 
 The second step is to downsize the data, as the file is too big to process efficiently with standard computing resources. The size of the file (Json file: 5.34GB and csv file: 4.69GB) can make it challenging to load the data into memory, slow down processing times, and limit the ability to work with the data.
 
-[Downsize data]()
+[Downsize data](https://github.com/JD-Yue/Project-3/blob/main/1_collecting%20data/downsized_data.ipynb)
 
 The code downsize the large CSV file 'yelp_academic_dataset_review.csv' by randomly sampling only 0.25% of its rows (SAMPLE_SIZE = 0.0025). It uses the skiprows argument in pd.read_csv to randomly select rows based on the outcome of the random number generator, with seed set to 42. After reading the data into a dataframe df_downsized, the code adds headers to the columns using the columns attribute and sets the column names in the headers list. Finally, it calculates the descriptive statistics of the dataframe using the describe() method.
 
 * Before downsizing (6990280 rows)
 
-![Descriptive statistics](../Project-3/images/descriptive_statistics.png)
+![Descriptive statistics](/images/descriptive_statistics.png)
 
 * After downsizing (17409 rows)
 
-![Downsized descriptive statistics](../Project-3/images/downsized_descriptive_statistics.png)
+![Downsized descriptive statistics](/images/downsized_descriptive_statistics.png)
 
  The mean, median, mode, standard deviation, etc. of the 'stars' column in the original dataset and the downsized dataset are very close to each other, which suggests that the distribution of the 'stars' column in both datasets is very similar. Hence, using the 'stars' column to differentiate between different groups of reviews (e.g. positive reviews vs. negative reviews) in future analysis should not have a significant impact on the results.
 
 ### **(3) Visualizing and understanding and creating datasets**
 
-[Steps to visualize, understand and create datasets]()
+[Visualize, understand and create datasets](https://github.com/JD-Yue/Project-3/blob/main/2_understanding%20data.ipynb)
 
 **Length of text**
 
  I plot a histogram of the frequency of the length of the text reviews in the 'yelp_df' dataframe. The purpose of this plot is to give an overview of the distribution of the length of the reviews in the dataframe.  Understanding the distribution of review length can help in choosing appropriate parameters for further analysis or modeling, such as setting a threshold for the maximum review length to be considered, or selecting an appropriate text representation method based on the average review length.
 
- ![text frequency](../Project-3/images/text_frequency.png)
+ ![text frequency](/images/text_frequency.png)
 
 **Stars**
 
  To understand stars, I create a count plot of the 'stars' column in the dataframe using the seaborn library and to display the distribution of the 'length' column of the dataframe as histograms, faceted by the 'stars' column. The count plot of the 'stars' column will give an overview of the number of reviews with each rating (1 to 5 stars). The histograms of the 'length' column, faceted by 'stars', will give an overview of the distribution of the length of reviews for each rating.
 
-![star count](../Project-3/images/star_count.png)
+![star count](/images/star_count.png)
 
-![star length frequency](../Project-3/images/star_length_frequency.png)
+![star length frequency](/images/star_length_frequency.png)
 
 Decision to use 1 star and 5 stars in the analysis
 
@@ -99,7 +99,7 @@ Based on the results, the two categories (1 star and 5 stars) seem to have enoug
 
 I create two separate dataframes, one for reviews with 1 star rating (yelp_df_1) and another for reviews with 5 star rating (yelp_df_5), by filtering the original dataframe yelp_df based on the value of the 'stars' column. Then, a third dataframe yelp_df_1_5 is created by concatenating the two dataframes yelp_df_1 and yelp_df_5 using the pd.concat() function. The resulting dataframe yelp_df_1_5 only includes reviews with either 1 star or 5 star rating. 
 
-![1 star vs 5 stars](../Project-3/images/1_star_5_stars.png)
+![1 star vs 5 stars](/images/1_star_5_stars.png)
 
 I then do a count of the 1 star and 5 stars reviews to get a further understanding. The count of the number of 1-star reviews is smaller compared to the count of the number of 5-star reviews in the dataset. This information could suggest that there are fewer negative reviews than positive reviews in the dataset. It also highlights the imbalance in the distribution of the 'stars' column in the dataset and could impact the results of further analysis if not handled properly.
 
@@ -107,15 +107,15 @@ I then use wordcount to visualize the 1 star and 5 star reviews. This helps to u
 
 1 star
 
-![1 star wordcount](../Project-3/images/1_star_wordcount.png)
+![1 star wordcount](/images/1_star_wordcount.png)
 
 5 stars
 
-![5 stars wordcount](../Project-3/images/5_stars_wordcount.png)
+![5 stars wordcount](/images/5_stars_wordcount.png)
 
 ### **(3) Data cleaning and applying NLP**
 
-[steps to clean data and apply NLP]()
+[Clean data and apply NLP](https://github.com/JD-Yue/Project-3/blob/main/3_data_cleaning.ipynb)
 
 The next step is performed as a preprocessing step for natural language processing. The goal is to clean the text data and convert it into a format that can be used as input for NLP algorithms. This includes removing punctuation marks and removing stopwords (common words that do not carry much meaning, such as "the" and "and"). 
 
@@ -124,6 +124,8 @@ The step of cleaning the text data is important in preparing the data for NLP mo
 The cleaned data is then vectorized, which means it is transformed into numerical data that can be processed by machine learning algorithms. This is done using the CountVectorizer method from the scikit-learn library, which tokenizes the text data and converts it into a sparse matrix representation.
 
 ### **(4) Model training**
+
+[Model training](https://github.com/JD-Yue/Project-3/blob/main/4_model_training%20(1).ipynb)
 
 The next step is training the machine learning model (Multinomial Naive Bayes classifier (NB_classifier)) for sentiment analysis on the Yelp dataset. The goal of this model is to predict the star rating (1 to 5) based on the text reviews.
 
@@ -145,19 +147,19 @@ In this case, the choice of using a Multinomial Naive Bayes model for sentiment 
 
 **Train**
 
-![train heatmap](../Project-3/images/train_heatmap.png)
+![train heatmap](/images/train_heatmap.png)
 
 **Test**
 
-![test heatmap](../Project-3/images/test_heatmap.png)
+![test heatmap](/images/test_heatmap.png)
 
 **Classification Report**
 
-![classification report](../Project-3/images/classification_report.png)
+![classification report](/images/classification_report.png)
 
 
 **Test**
-[Streamlit](http://localhost:8501/)
+[Streamlit](https://github.com/JD-Yue/Project-3/blob/main/app.py)
 
 ## Conclusion
 
